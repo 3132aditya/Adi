@@ -17,18 +17,11 @@ let velocityX=0,velocityY=0;
 let score=0;
 let snakeArr=[];
 let Interval;
-let specialX,specialY;
 let timeInterval;
-let increment;
-let seconds=45;
+let seconds=60;
 
-//special food position function
-function specialFoodPosition(){
-  //Give random coordinates
-  specialX =Math.floor(Math.random()*20)+1;
-  specialY =Math.floor(Math.random()*20)+1;
-}
 
+//Timer
 function Time(){
    if(snakeX!=foodX && snakeY!=foodY)
    {
@@ -41,16 +34,6 @@ function Time(){
    timerElement.innerText=`Time-Left: ${seconds}`;
 
   }
-
-  function timeIncrement(){
-    if (snakeX===foodX && snakeY===foodY)
-    {
-      seconds+=1;
-    }
-  }
-  
-
-
 
 // Getting high score from the local storage
 let highScore = localStorage.getItem("high-score") || 0;
@@ -129,6 +112,7 @@ function gameEngine(){
       foodPosition();
       snakeArr.push([foodX,foodY]);
       score++;//Increment point by1
+      seconds+=5;
       if(score>highScore){
         highScoreAudio.play();
         highScore=score;
@@ -188,8 +172,7 @@ document.addEventListener("click", Time);
 timeInterval=setInterval(Time,1000);
 
 
-document.addEventListener("click", timeIncrement);
-  increment=setInterval(timeIncrement,100);
+
   
   
 
