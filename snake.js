@@ -7,7 +7,7 @@ const backgroundMusic= new Audio('back.mp3');
 const overAudio= new Audio('over.wav');
 const food= new Audio('food.mp3');
 const snakeMove=new Audio('move.mp3');
-const highScoreAudio=new Audio('highscore.mp3');
+
 
 //Declarations
 let gameOver=false;
@@ -113,8 +113,8 @@ function gameEngine(){
       snakeArr.push([foodX,foodY]);
       score++;//Increment point by1
       seconds+=5;
-      if(score>highScore){
-        highScoreAudio.play();
+      if(score>highScore)
+      {
         highScore=score;
       }
      
