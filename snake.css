@@ -105,6 +105,7 @@ body{
   justify-content: space-between;
   align-items: center;
 }
+
 @media (max-width:1280px) {
     .arrow{
         display:block;
