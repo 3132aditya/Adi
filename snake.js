@@ -12,13 +12,14 @@ const snakeMove=new Audio('move.mp3');
 //Declarations
 let gameOver=false;
 let foodX,foodY;
-let snakeX=13,snakeY=15;
+let snakeX=10,snakeY=13;
 let velocityX=0,velocityY=0;
 let score=0;
 let snakeArr=[];
 let Interval;
 let timeInterval;
 let seconds=60;
+let sfoodX=17,sfoodY=15;
 
 
 //Timer
@@ -38,6 +39,7 @@ function Time(){
 // Getting high score from the local storage
 let highScore = localStorage.getItem("high-score") || 0;
 highScoreElement.innerText = `HighScore: ${highScore}`;
+
 
 //Food position
 function foodPosition(){
@@ -95,17 +97,18 @@ controls.forEach(button => button.addEventListener("click", () => changeDirectio
 //game Engine
 function gameEngine(){
   document.addEventListener("keydown", backgroundMusic.play());
-  // backgroundMusic.play();  
   
   if(gameOver){
         return Over();
-        
      }
 
     //displaying food
-    let html= `<div class="snakeFood" style="grid-area: ${foodY}/${foodX}" ></div>`;
+    let a= `<div class="snakeFood" style="grid-area: ${foodY}/${foodX}"></div>`;
+    
 
 //If snake hits the food
+
+   
     if(snakeX===foodX && snakeY===foodY)
     {
       food.play();
@@ -113,8 +116,7 @@ function gameEngine(){
       snakeArr.push([foodX,foodY]);
       score++;//Increment point by1
       seconds+=5;
-      if(score>highScore)
-      {
+      if(score>highScore){
         highScore=score;
       }
      
@@ -123,6 +125,7 @@ function gameEngine(){
       highScoreElement.innerText = `High Score: ${highScore}`;
 
     }
+
 
 
     //Snake head
@@ -147,7 +150,7 @@ function gameEngine(){
     for(i=0;i<snakeArr.length;i++)
     {
         //Adding Division to each part of the snake
-        html+= `<div class="snakeHead" style="grid-area: ${snakeArr[i][1]}/${snakeArr[i][0]}" ></div>`;
+        a+= `<div class="snakeHead" style="grid-area: ${snakeArr[i][1]}/${snakeArr[i][0]}" ></div>`;
 
     }
 
@@ -162,7 +165,7 @@ function gameEngine(){
 
 
 
-    playboard.innerHTML= html;
+    playboard.innerHTML= a;
 }
 foodPosition();
 Interval = setInterval(gameEngine, 150);
